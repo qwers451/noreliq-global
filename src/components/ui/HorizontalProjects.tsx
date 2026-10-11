@@ -10,12 +10,12 @@ import type { Project } from "@/content/projects";
 
 type Props = { projects: Project[] };
 
-const ALL = "Все";
+const ALL = "All";
 
 /**
  * Лента работ как в разделе проектов у референса: горизонтальная полоса
- * небольших карточек, активная подрастает и раскрывает описание, снизу —
- * фильтры по тегам со счётчиками и тонкая полоса прокрутки.
+ * небольших карточек, активная подрастает и раскрывает описание. Сверху —
+ * фильтры по тегам со счётчиками, снизу — тонкая полоса прокрутки.
  *
  * Вся механика прокрутки живёт в useCarousel: активной считается карточка
  * в центре, после жеста лента сама доворачивает ближайшую.
@@ -60,58 +60,10 @@ export function HorizontalProjects({ projects }: Props) {
     // flex-1, а не h-full: у низкой страницы высота задана через min-height,
     // и проценты от неё не считаются — лента перестала бы стоять по центру.
     <div ref={surfaceRef} className="flex min-h-0 flex-1 flex-col justify-center">
-      <div
-        ref={trackRef}
-        role="region"
-        tabIndex={0}
-        aria-label="Лента проектов"
-        className="carousel-track items-start gap-8 pb-2 md:gap-12"
-      >
-        {visible.map((project, index) => (
-          // data-active проставляет useCarousel напрямую в DOM, а оформление
-          // висит на CSS-селекторе: так смена центральной карточки не гоняет
-          // React по списку картинок посреди прокрутки.
-          <article key={project.slug} className="group w-[74vw] shrink-0 md:w-[24vw]">
-            <TransitionLink href={`/projects/${project.slug}`} className="block">
-              {/* Активная карточка чуть крупнее — так лента получает
-                  фокус внимания, как в референсе. */}
-              <div className="relative h-[24svh] w-full overflow-hidden md:h-[28svh]">
-                <Image
-                  src={project.cover}
-                  alt={`Обложка проекта ${project.title}`}
-                  fill
-                  sizes="(max-width: 768px) 74vw, 24vw"
-                  priority={index < 2}
-                  draggable={false}
-                  className="scale-100 object-cover opacity-65 transition-[transform,opacity] duration-700 ease-[var(--ease-out-expo)] group-data-[active=true]:scale-[1.04] group-data-[active=true]:opacity-100"
-                />
-              </div>
-
-              <h2 className="mt-5">
-                <span className="display-caps block text-h2">{project.title}</span>
-                <span className="display-note mt-2 block text-[0.9375rem]">
-                  {project.subtitle ?? project.role.toLowerCase()}
-                </span>
-              </h2>
-
-              <span aria-hidden="true" className="mt-3 block h-px w-8 bg-current opacity-50" />
-
-              {/* Описание показывается только у центральной карточки.
-                  Высота зарезервирована — иначе лента прыгает при смене. */}
-              <div className="mt-4 h-24 translate-y-2 opacity-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] group-data-[active=true]:translate-y-0 group-data-[active=true]:opacity-100 group-data-[active=true]:delay-100 md:mt-5 md:h-36">
-                <p className="line-clamp-2 max-w-[34ch] leading-relaxed md:line-clamp-4">
-                  {project.summary}
-                </p>
-                <p className="mono-label mt-3 opacity-60">
-                  {project.tags[0]} · {project.year}
-                </p>
-              </div>
-            </TransitionLink>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-6 md:mt-10">
+      {/* Фильтры над лентой: сначала выбирают, что смотреть, потом листают.
+          На низком экране (телефон боком) отступ минимальный, чтобы
+          карточка помещалась в первый экран. */}
+      <div className="mb-6 md:mb-10 [@media(max-height:500px)]:mb-1">
         <div className="no-scrollbar flex items-center gap-x-5 overflow-x-auto px-[var(--gutter)] md:flex-wrap md:justify-center md:px-0">
           <button
             type="button"
@@ -139,16 +91,74 @@ export function HorizontalProjects({ projects }: Props) {
             </button>
           ))}
         </div>
+      </div>
 
-        {/* Полоса прокрутки ленты. Ширину не анимируем: масштаб по X
-            не трогает раскладку и не заставляет пересчитывать её каждый кадр. */}
-        <div className="mx-auto mt-5 mb-10 h-px w-[60%] max-w-md bg-current opacity-20 md:mb-0">
-          <div
-            ref={progressRef}
-            className="h-px origin-left bg-current opacity-100"
-            style={{ transform: "scaleX(max(0.08, var(--progress, 0)))" }}
-          />
-        </div>
+      <div
+        ref={trackRef}
+        role="region"
+        tabIndex={0}
+        aria-label="Project reel"
+        className="carousel-track items-start gap-8 pb-2 md:gap-12"
+      >
+        {visible.map((project, index) => (
+          // data-active проставляет useCarousel напрямую в DOM, а оформление
+          // висит на CSS-селекторе: так смена центральной карточки не гоняет
+          // React по списку картинок посреди прокрутки.
+          <article key={project.slug} className="group w-[74vw] shrink-0 md:w-[24vw]">
+            <TransitionLink href={`/projects/${project.slug}`} className="block">
+              {/* Активная карточка чуть крупнее — так лента получает
+                  фокус внимания, как в референсе. Ячейка держит ту же
+                  пропорцию 16:10, что и файл превью, поэтому экран
+                  продукта виден целиком и ничего не обрезается. */}
+              <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <Image
+                  src={project.preview}
+                  alt={`${project.title}: product screen`}
+                  fill
+                  sizes="(max-width: 768px) 74vw, 24vw"
+                  priority={index < 2}
+                  draggable={false}
+                  className="scale-100 object-cover opacity-65 transition-[transform,opacity] duration-700 ease-[var(--ease-out-expo)] group-data-[active=true]:scale-[1.04] group-data-[active=true]:opacity-100"
+                />
+              </div>
+
+              <h2 className="mt-5">
+                <span className="display-caps block text-h2">{project.title}</span>
+                <span className="display-note mt-2 block text-[0.9375rem]">
+                  {project.subtitle ?? project.role.toLowerCase()}
+                </span>
+              </h2>
+
+              <span aria-hidden="true" className="mt-3 block h-px w-8 bg-current opacity-50" />
+
+              {/* Описание показывается только у центральной карточки.
+                  Высота зарезервирована — иначе лента прыгает при смене. */}
+              <div className="mt-4 h-24 translate-y-2 opacity-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] group-data-[active=true]:translate-y-0 group-data-[active=true]:opacity-100 group-data-[active=true]:delay-100 md:mt-5 md:h-36">
+                <p className="line-clamp-2 max-w-[34ch] leading-relaxed md:line-clamp-4">
+                  {project.summary}
+                </p>
+                <p className="mono-label mt-3 flex flex-wrap gap-x-5">
+                  <span className="opacity-60">
+                    {project.tags[0]} · {project.year}
+                  </span>
+                  <span className="link-mask" data-active="true">
+                    Open case →
+                  </span>
+                </p>
+              </div>
+            </TransitionLink>
+          </article>
+        ))}
+      </div>
+
+      {/* Полоса прокрутки ленты. Ширину не анимируем: масштаб по X
+          не трогает раскладку и не заставляет пересчитывать её каждый кадр. */}
+      <div className="mx-auto mt-8 mb-10 h-px w-[60%] max-w-md bg-current opacity-20 md:mt-12 md:mb-0">
+        <div
+          ref={progressRef}
+          className="h-px origin-left bg-current opacity-100"
+          style={{ transform: "scaleX(max(0.08, var(--progress, 0)))" }}
+        />
       </div>
     </div>
   );

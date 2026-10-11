@@ -6,20 +6,15 @@ export type SocialLink = {
 
 export const site = {
   name: "Noreliq",
-  legalName: "Норлик",
   tagline: "Digital & AI studio",
   /** Короткое позиционирование — используется в hero и SEO-описании. */
   intro:
-    "Проектируем и запускаем сайты, веб-сервисы, ботов и AI-инструменты под конкретные задачи бизнеса.",
+    "We design and launch websites, web services, bots and AI tools around real business problems.",
   description:
-    "Noreliq — digital & AI студия. Проектируем интерфейсы, собираем сайты и веб-сервисы с ИИ-функциями под задачи бизнеса.",
-  /** Переопределяется NEXT_PUBLIC_SITE_URL — например, для демо на GitHub Pages. */
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://noreliq.com",
+    "Noreliq is a digital & AI studio. We design interfaces and build websites and web services with AI features around business goals.",
+  /** Переопределяется NEXT_PUBLIC_SITE_URL (его выставляет workflow). */
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://qwers451.github.io/noreliq-global",
   email: "order@noreliq.ru",
-  phone: "+7 (981) 890-88-69",
-  phoneHref: "+79818908869",
-  city: "Санкт-Петербург",
-  timezone: "GMT+3",
   foundedYear: 2026,
   socials: [
     { label: "Telegram", href: "https://t.me/noreliq_dev", handle: "@noreliq_dev" },

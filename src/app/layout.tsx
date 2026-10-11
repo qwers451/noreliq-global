@@ -19,7 +19,7 @@ import { organizationSchema } from "@/lib/schema";
 // Антиква с курсивом ушла: от неё сайт читался как дизайнерское портфолио,
 // а не как студия разработки.
 const display = Manrope({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["400", "800"],
   variable: "--font-display-src",
   display: "swap",
@@ -27,7 +27,7 @@ const display = Manrope({
 
 // Моноширинный для интерфейсных подписей и меты.
 const mono = JetBrains_Mono({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["500"],
   variable: "--font-sans-src",
   display: "swap",
@@ -37,7 +37,7 @@ const mono = JetBrains_Mono({
 // индексов и тегов. Отличается от JetBrains Mono рисунком, поэтому служебное
 // и акцентное не сливаются.
 const code = IBM_Plex_Mono({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["400"],
   variable: "--font-code-src",
   display: "swap",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
-  keywords: ["веб-студия", "разработка сайтов", "дизайн интерфейсов", "Next.js", site.name],
+  keywords: ["digital studio", "web development", "AI tools", "interface design", "Next.js", site.name],
   openGraph: {
     ...openGraphBase,
     title: `${site.name} — ${site.tagline}`,
@@ -90,7 +90,7 @@ export default function RootLayout({
     // suppressHydrationWarning: скрипт ниже дописывает класс motion-ok
     // на <html> до гидрации, и React иначе ругается на расхождение атрибутов.
     <html
-      lang="ru"
+      lang="en"
       className={`${display.variable} ${mono.variable} ${code.variable}`}
       data-scroll-behavior="smooth"
       suppressHydrationWarning
@@ -104,7 +104,7 @@ export default function RootLayout({
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[110] focus:bg-fg focus:px-4 focus:py-2 focus:text-inverse"
         >
-          Перейти к содержимому
+          Skip to content
         </a>
 
         <ThemeField />

@@ -41,7 +41,7 @@ export function ProjectFrames({ frames }: Props) {
         ref={trackRef}
         role="region"
         tabIndex={0}
-        aria-label="Кадры проекта"
+        aria-label="Project frames"
         data-lenis-prevent
         className="carousel-track items-start gap-6 py-4 md:gap-10"
       >
@@ -58,7 +58,7 @@ export function ProjectFrames({ frames }: Props) {
               type="button"
               onClick={() => setZoom(index)}
               className="relative block aspect-[var(--ratio)] w-full cursor-zoom-in"
-              aria-label={`Открыть кадр: ${frame.alt}`}
+              aria-label={`Open frame: ${frame.alt}`}
             >
               <Image
                 src={frame.src}
@@ -84,9 +84,9 @@ export function ProjectFrames({ frames }: Props) {
             onClick={() => step(-1)}
             disabled={atStart}
             className="mono-label inline-flex min-h-11 items-center px-3 transition-opacity active:opacity-60 disabled:opacity-25"
-            aria-label="Предыдущий кадр"
+            aria-label="Previous frame"
           >
-            ← Назад
+            ← Prev
           </button>
 
           <span className="mono-label tabular-nums opacity-60">
@@ -98,9 +98,9 @@ export function ProjectFrames({ frames }: Props) {
             onClick={() => step(1)}
             disabled={atEnd}
             className="mono-label inline-flex min-h-11 items-center px-3 transition-opacity active:opacity-60 disabled:opacity-25"
-            aria-label="Следующий кадр"
+            aria-label="Next frame"
           >
-            Вперёд →
+            Next →
           </button>
         </div>
       ) : null}

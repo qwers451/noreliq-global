@@ -22,8 +22,9 @@
   --font-sans: var(--font-sans-src), "SFMono-Regular", Menlo, monospace;
   --font-code: var(--font-code-src), "SFMono-Regular", Menlo, monospace;
 
-  /* Крупная строка занимает почти всю ширину экрана, как на плакате. */
-  --text-hero: clamp(2.25rem, 5vw, 4.5rem);
+  /* Крупная строка занимает почти всю ширину экрана, как на плакате:
+     имя студии на главной — главный элемент первого экрана. */
+  --text-hero: clamp(4.25rem, 11vw, 9.75rem);
   --text-display: clamp(2rem, 4.4vw, 4rem);
   --text-h2: clamp(1.375rem, 2.2vw, 1.75rem);
   --text-h3: clamp(1.125rem, 1.8vw, 1.5rem);
@@ -253,6 +254,45 @@
   }
   .cursor-part[data-part="dot"][data-state="link"] {
     scale: 0;
+  }
+
+  /* Кнопки-капсулы главной. Подпись — та же моноширинная строка, что
+     в меню, чтобы кнопка не выбивалась из языка сайта. Отклик быстрый:
+     кнопку нажимают часто, долгий переход тут только мешает. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6em;
+    min-height: 3rem;
+    padding-inline: 1.5rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition:
+      background-color 0.2s var(--ease-out-expo),
+      box-shadow 0.2s var(--ease-out-expo),
+      transform 0.16s var(--ease-out-expo);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--color-accent);
+    color: #141414;
+  }
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--color-accent) 82%, white);
+  }
+  .btn-ghost {
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 40%, transparent);
+  }
+  .btn-ghost:hover {
+    background: color-mix(in srgb, currentColor 10%, transparent);
+    box-shadow: inset 0 0 0 1px currentColor;
   }
 
   /* Зона нажатия под палец у мелких подписей-ссылок. */

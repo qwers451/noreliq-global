@@ -45,7 +45,7 @@ export function Header() {
           // Отрицательный отступ слева: зона нажатия дорастает до 44 px,
           // но знак визуально остаётся на прежнем месте у края.
           className="-ml-2 flex min-h-11 min-w-11 items-center px-2"
-          aria-label={`${site.name} — на главную`}
+          aria-label={`${site.name}, home`}
           onClick={() => setOpen(false)}
         >
           {/* На тёмных полях знак берём в светлой версии, иначе графит
@@ -61,7 +61,7 @@ export function Header() {
           />
         </TransitionLink>
 
-        <nav aria-label="Основная навигация" className="hidden md:block">
+        <nav aria-label="Main navigation" className="hidden md:block">
           <ul className="flex items-center gap-7">
             {nav.map((item) => (
               <li key={item.href}>
@@ -83,10 +83,10 @@ export function Header() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          aria-label={open ? "Close menu" : "Open menu"}
           className="mono-label relative z-10 -mr-2 inline-flex min-h-11 items-center px-2 transition-opacity active:opacity-60 md:hidden"
         >
-          {open ? "Закрыть" : "Меню"}
+          {open ? "Close" : "Menu"}
         </button>
       </div>
 

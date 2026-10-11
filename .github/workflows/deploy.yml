@@ -22,8 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: "true"
-      # Сайт живёт на собственном домене, отдаётся из корня — без префикса пути.
-      NEXT_PUBLIC_SITE_URL: https://noreliq.ru
+      # Пока своего домена нет, сайт живёт по адресу
+      # https://<owner>.github.io/<repo>/ — отсюда префикс пути. С непустым
+      # префиксом robots.ts закрывает сайт от индексации.
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+      NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
     steps:
       - uses: actions/checkout@v4
 

@@ -77,7 +77,7 @@ export function FrameViewer({ frames, start, onClose }: Props) {
       <div
         ref={trackRef}
         className="carousel-track min-h-0 flex-1 items-center"
-        aria-label="Кадры во весь экран"
+        aria-label="Full-screen frames"
         data-lenis-prevent
       >
         {frames.map((frame) => (
@@ -113,7 +113,7 @@ export function FrameViewer({ frames, start, onClose }: Props) {
           onClick={() => step(-1)}
           disabled={active === 0}
           className="mono-label inline-flex min-h-11 min-w-11 items-center justify-center text-base transition-opacity active:opacity-60 disabled:opacity-25"
-          aria-label="Предыдущий кадр"
+          aria-label="Previous frame"
         >
           ←
         </button>
@@ -125,7 +125,7 @@ export function FrameViewer({ frames, start, onClose }: Props) {
           onClick={() => step(1)}
           disabled={active === frames.length - 1}
           className="mono-label inline-flex min-h-11 min-w-11 items-center justify-center text-base transition-opacity active:opacity-60 disabled:opacity-25"
-          aria-label="Следующий кадр"
+          aria-label="Next frame"
         >
           →
         </button>
@@ -140,7 +140,7 @@ export function FrameViewer({ frames, start, onClose }: Props) {
         onClick={onClose}
         className="mono-label absolute right-[var(--gutter)] top-4 inline-flex min-h-11 items-center px-2 opacity-70 active:opacity-100"
       >
-        Закрыть
+        Close
       </button>
     </div>,
     document.body,

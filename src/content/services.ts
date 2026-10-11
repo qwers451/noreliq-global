@@ -1,25 +1,19 @@
-export type ServiceTier = {
-  title: string;
-  /**
-   * Цена уже отформатирована здесь целиком, а не собирается из числа:
-   * единицы измерения слишком разные («₽», «₽ / SKU», «₽/мес.», диапазон,
-   * «индивидуально»), чтобы гонять их через один форматтер.
-   */
-  price: string;
-};
-
 export type ServiceCategory = {
   id: string;
   /** Порядковый номер — маленький моноширинный индекс перед кодом. */
   index: string;
-  /** Короткий код на английском, в духе "PLATFORMS" — используется как лейбл. */
+  /** Короткий код в духе "PLATFORMS" — используется как лейбл. */
   code: string;
   title: string;
   /** Одна строка — для карточки на главной. */
   summary: string;
   /** Один-два абзаца — для страницы услуг. */
   description: string[];
-  tiers: ServiceTier[];
+  /**
+   * Пакеты услуги. Цен на международной версии нет: стоимость
+   * обсуждается в переписке, поэтому здесь только названия.
+   */
+  tiers: string[];
   footnote?: string;
 };
 
@@ -28,104 +22,64 @@ export const services: ServiceCategory[] = [
     id: "platforms",
     index: "01",
     code: "PLATFORMS",
-    title: "Веб-платформы и интеграции",
-    summary: "Сайты и веб-сервисы с интеграциями, оплатой и аналитикой.",
+    title: "Web platforms and integrations",
+    summary: "Websites and web services with integrations, payments and analytics.",
     description: [
-      "Проектируем и разрабатываем сайты и веб-платформы под задачи бизнеса — не шаблон, а кастомное решение со своей логикой, интеграциями с CRM, платёжными системами и внутренними сервисами. В работу входят структура, UX/UI, адаптивная вёрстка, CMS, формы, аналитика, базовое SEO.",
-      "Что получает клиент: готовый к запуску продукт, корректную работу на всех устройствах, подключённую аналитику, нужные интеграции и возможность самостоятельно обновлять контент.",
+      "We design and build websites and web platforms around the business problem: not a template, but a custom product with its own logic and integrations with CRMs, payment providers and internal systems. Structure, UX/UI, responsive layout, CMS, forms, analytics and SEO basics are all part of the work.",
+      "What you get: a product ready to launch, solid on every device, with analytics and the integrations you need in place, and content you can update yourself.",
     ],
-    tiers: [
-      { title: "Noreliq Landing", price: "от 59 000 ₽" },
-      { title: "Noreliq Business", price: "от 119 000 ₽" },
-      { title: "Noreliq Commerce", price: "от 179 000 ₽" },
-      { title: "Поддержка сайта", price: "от 7 900 ₽/мес." },
-    ],
-  },
-  {
-    id: "marketplace",
-    index: "02",
-    code: "MARKETPLACE",
-    title: "Карточки и AI-визуал",
-    summary: "Оформление карточек для маркетплейсов и AI-фотосессии без съёмки.",
-    description: [
-      "Формируем оформление карточек товаров для маркетплейсов: анализируем конкурентов, выстраиваем продающую структуру, разрабатываем обложку, 5–7 информационных слайдов, инфографику и единый визуальный стиль.",
-      "AI-фотосессия: по одному исходнику создаём новые сцены без съёмки — меняем фон и окружение, показываем товар в интерьере и lifestyle-сценах, готовим дополнительные рекламные визуалы.",
-    ],
-    tiers: [
-      { title: "Карточка, 5–7 слайдов", price: "7 900 ₽ / SKU" },
-      { title: "Premium + AI-фотосессия", price: "от 14 900 ₽ / SKU" },
-      { title: "Серийное оформление каталога", price: "индивидуально" },
-    ],
+    tiers: ["Noreliq Landing", "Noreliq Business", "Noreliq Commerce", "Website support"],
   },
   {
     id: "ai-content",
-    index: "03",
+    index: "02",
     code: "AI CONTENT",
-    title: "AI-видео и креативы",
-    summary: "Рекламные ролики и креативы на генеративных технологиях под любую площадку.",
+    title: "AI video and creative",
+    summary: "Ads and creative made with generative tools, for any platform.",
     description: [
-      "Производим рекламный контент на генеративных технологиях: короткие ролики, product-видео, визуальные креативы, баннеры и контент для соцсетей. Берём на себя идею, сценарий, генерацию визуала, озвучку, музыку, титры и монтаж.",
-      "Форматы: Reels, Shorts, VK Клипы, реклама, сайт, презентации и маркетплейсы. Один материал адаптируем под разные площадки и соотношения сторон.",
+      "We produce ad content with generative tools: short videos, product videos, visual creative, banners and social content. We handle the idea, script, visuals, voice-over, music, captions and editing.",
+      "Formats: Reels, Shorts, TikTok, ads, websites and presentations. One piece is adapted to different platforms and aspect ratios.",
     ],
-    tiers: [
-      { title: "AI-видео, 10–20 сек.", price: "от 6 900 ₽" },
-      { title: "Рекламный ролик, 20–45 сек.", price: "от 14 900 ₽" },
-      { title: "Пакет из 5 роликов", price: "от 29 900 ₽" },
-      { title: "Контент на месяц", price: "от 49 900 ₽/мес." },
-    ],
+    tiers: ["AI video, 10–20 s", "Ad spot, 20–45 s", "Pack of 5 videos", "Monthly content"],
   },
   {
     id: "telegram",
-    index: "04",
+    index: "03",
     code: "TELEGRAM",
-    title: "Боты и Mini Apps",
-    summary: "Telegram-боты и мини-приложения — от простой логики до полноценного интерфейса.",
+    title: "Bots and Mini Apps",
+    summary: "Telegram bots and Mini Apps, from simple logic to a full interface.",
     description: [
-      "Разрабатываем присутствие бренда внутри Telegram: от простого бота для заказов, записи и поддержки — до Mini App с полноценным интерфейсом, каталогом и оплатой прямо в мессенджере. При необходимости подключаем AI-ассистента и интеграции с CRM.",
-      "Что получает клиент: рабочий бот или mini-app, подключённые оплаты и уведомления, инструкцию по администрированию.",
+      "We build your brand's presence inside Telegram: from a simple bot for orders, bookings and support to a Mini App with a full interface, catalogue and payments right in the messenger. Where it helps, we add an AI assistant and CRM integrations.",
+      "What you get: a working bot or Mini App, payments and notifications connected, and a guide to running it.",
     ],
-    tiers: [
-      { title: "Telegram-бот", price: "от 39 000 ₽" },
-      { title: "Telegram Mini App", price: "от 89 000 ₽" },
-      { title: "Бот / Mini App + CRM и AI-ассистент", price: "от 129 000 ₽" },
-      { title: "Поддержка и развитие", price: "от 6 900 ₽/мес." },
-    ],
+    tiers: ["Telegram bot", "Telegram Mini App", "Bot / Mini App with CRM and AI assistant", "Support and development"],
   },
   {
     id: "ai-automation",
-    index: "05",
+    index: "04",
     code: "AI AUTOMATION",
-    title: "AI-ассистенты и автоматизация",
-    summary: "AI-ассистенты, а также автоматизация заявок, продаж и поддержки.",
+    title: "AI assistants and automation",
+    summary: "AI assistants and automation for leads, sales and support.",
     description: [
-      "Внедряем AI-инструменты, которые берут на себя повторяющуюся работу бизнеса: ассистентов для сайта и Telegram, обучаем их на базе знаний клиента, настраиваем квалификацию лидов, ответы на вопросы и передачу диалога менеджеру.",
-      "Автоматизируем процессы вокруг: CRM, заявки, e-mail, документы, уведомления, отчёты, n8n и API-интеграции. Пример цепочки: заявка → AI анализирует → CRM → персональный ответ → задача менеджеру → follow-up.",
+      "We put AI tools to work on a business's repetitive tasks: assistants for websites and Telegram trained on your knowledge base, lead qualification, answers to common questions and handing the conversation over to a manager.",
+      "We automate the processes around them: CRM, leads, email, documents, notifications, reports, n8n and API integrations. A typical chain: lead → AI analysis → CRM → personal reply → task for a manager → follow-up.",
     ],
-    tiers: [
-      { title: "AI Assistant Start", price: "от 49 000 ₽" },
-      { title: "AI Sales: ассистент + CRM", price: "от 89 000 ₽" },
-      { title: "Комплексная автоматизация", price: "от 129 000 ₽" },
-      { title: "Поддержка и развитие", price: "от 9 900 ₽/мес." },
-    ],
-    footnote: "Внешние API, серверы, телефония и сторонние сервисы оплачиваются отдельно.",
+    tiers: ["AI Assistant Start", "AI Sales: assistant + CRM", "End-to-end automation", "Support and development"],
+    footnote: "Third-party APIs, servers, telephony and other external services are billed separately.",
   },
   {
     id: "ai-visibility",
-    index: "06",
+    index: "05",
     code: "AI VISIBILITY",
-    title: "Продвижение в AI-поиске",
-    summary: "Помогаем бренду появляться в ответах нейросетей и AI-поиска.",
+    title: "Visibility in AI search",
+    summary: "We help brands show up in answers from AI assistants and AI search.",
     description: [
-      "Помогаем бренду становиться заметнее в ответах нейросетей и AI-поиска: проверяем, как AI-сервисы описывают компанию и конкурентов, какие источники используют и по каким запросам бренд появляется или отсутствует.",
-      "Работаем со структурой сайта, FAQ, сущностями и schema-разметкой, экспертным контентом, источниками и регулярным мониторингом целевых запросов — чтобы повысить качество и вероятность упоминаний бренда.",
+      "We help brands become more visible in answers from AI assistants and AI search: we check how AI services describe the company and its competitors, which sources they rely on, and for which queries the brand appears or is missing.",
+      "We work on site structure, FAQs, entities and schema markup, expert content, sources and regular monitoring of target queries, to raise the quality and likelihood of brand mentions.",
     ],
-    tiers: [
-      { title: "AI Visibility Audit", price: "19 900 ₽" },
-      { title: "GEO Start", price: "от 49 000 ₽/мес." },
-      { title: "Расширенное сопровождение", price: "69 000–99 000 ₽/мес." },
-    ],
+    tiers: ["AI Visibility Audit", "GEO Start", "Extended support"],
     footnote:
-      "Не обещаем конкретную позицию в ответах нейросетей: продаём системную работу над видимостью и измеримую динамику упоминаний.",
+      "We don't promise a specific position in AI answers: we offer systematic work on visibility and measurable growth in mentions.",
   },
 ];
 
@@ -138,38 +92,38 @@ export type ProcessStep = {
 export const process: ProcessStep[] = [
   {
     index: "01",
-    title: "Знакомство",
+    title: "Intro",
     description:
-      "Обсуждаем задачу, формат и сроки: сайт это, серия AI-роликов, бот или автоматизация процессов. Фиксируем цель, по которой потом измеряем результат.",
+      "We discuss the task, format and timeline: a website, a series of AI videos, a bot or process automation. We agree on the goal we'll measure the result against.",
   },
   {
     index: "02",
-    title: "Исследование",
+    title: "Research",
     description:
-      "Собираем контекст: аудиторию, конкурентов, действующие процессы или карточки товаров. Формируем структуру и гипотезы под выбранный формат.",
+      "We gather context: audience, competitors and how things work today. Then we shape the structure and hypotheses for the chosen format.",
   },
   {
     index: "03",
-    title: "Концепция",
+    title: "Concept",
     description:
-      "Прототип интерфейса, сценарий ролика, логика бота или структура кампании — в зависимости от задачи. Согласуем ключевые решения до старта производства.",
+      "An interface prototype, a video script, bot logic or a campaign structure, depending on the task. Key decisions are agreed before production starts.",
   },
   {
     index: "04",
-    title: "Производство",
+    title: "Production",
     description:
-      "Разрабатываем интерфейс, собираем видео и визуал, настраиваем ассистента или бота. Показываем прогресс на демо-стендах, а не финальный результат в самом конце.",
+      "We build the interface, make the video and visuals, set up the assistant or bot. You see progress on demo builds, not only the final result at the very end.",
   },
   {
     index: "05",
-    title: "Запуск",
+    title: "Launch",
     description:
-      "Тестируем, подключаем аналитику и нужные интеграции, передаём доступы и инструкции команде.",
+      "We test, connect analytics and the integrations you need, and hand over access and documentation to your team.",
   },
   {
     index: "06",
-    title: "Развитие",
+    title: "Growth",
     description:
-      "Следим за метриками, донастраиваем и выпускаем обновления после запуска — разово или в формате поддержки.",
+      "We watch the metrics, fine-tune and ship updates after launch, as a one-off or as ongoing support.",
   },
 ];

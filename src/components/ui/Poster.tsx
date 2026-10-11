@@ -12,6 +12,8 @@ type PosterProps = {
   note: string;
   lead?: string;
   cta?: { href: string; label: string };
+  /** Кнопки вместо призыва с линией: главная ведёт сразу в два места. */
+  actions?: { href: string; label: string; primary?: boolean }[];
   /** Размер заголовка: hero для главной, display для внутренних страниц. */
   size?: "hero" | "display";
   className?: string;
@@ -19,7 +21,7 @@ type PosterProps = {
 
 /**
  * Композиция-плакат: всё по центру одного экрана — метка, две строки
- * заголовка, короткий абзац и призыв под волосяной линией.
+ * заголовка, короткий абзац и призыв под волосяной линией (или кнопки).
  */
 export function Poster({
   label,
@@ -27,6 +29,7 @@ export function Poster({
   note,
   lead,
   cta,
+  actions,
   size = "display",
   className,
 }: PosterProps) {
@@ -59,6 +62,24 @@ export function Poster({
       {lead ? (
         <Reveal as="p" className="poster-lead mt-10" immediate delay={0.16}>
           {lead}
+        </Reveal>
+      ) : null}
+
+      {actions?.length ? (
+        <Reveal
+          className="mt-10 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center"
+          immediate
+          delay={0.24}
+        >
+          {actions.map((action) => (
+            <TransitionLink
+              key={action.href}
+              href={action.href}
+              className={clsx("btn", action.primary ? "btn-primary" : "btn-ghost")}
+            >
+              {action.label}
+            </TransitionLink>
+          ))}
         </Reveal>
       ) : null}
 

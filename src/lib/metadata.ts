@@ -19,7 +19,7 @@ export const shareImage: ShareImage = {
 
 export const openGraphBase = {
   type: "website" as const,
-  locale: "ru_RU",
+  locale: "en_US",
   siteName: site.name,
   images: [shareImage],
 };

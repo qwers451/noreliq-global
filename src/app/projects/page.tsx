@@ -6,9 +6,9 @@ import { projects } from "@/content/projects";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Проекты",
+  title: "Work",
   description:
-    "Работы Noreliq: платформы, сервисы бронирования, мобильные приложения и визуал для маркетплейсов.",
+    "Selected work by Noreliq: platforms, booking services, web apps and websites.",
   path: "/projects",
 });
 
@@ -21,15 +21,15 @@ export default function ProjectsPage() {
           раздела, и без него у страницы не было структуры для скринридеров
           и поисковиков. Вид задаёт .mono-label — базовые стили h1 он
           перекрывает, потому что слой components идёт после base. */}
-      <div className="container-x pt-6 text-center">
+      <div className="container-x pt-6 text-center [@media(max-height:500px)]:pt-1">
         <Reveal as="h1" className="mono-label opacity-60" immediate>
-          03 / Проекты · {projects.length}
+          03 / Work · {projects.length}
         </Reveal>
       </div>
 
       {/* Лента занимает центральную часть экрана: пока всё помещается,
           страница не прокручивается, как в разделе работ у референса. */}
-      <div className="flex min-h-0 flex-1 flex-col py-6">
+      <div className="flex min-h-0 flex-1 flex-col py-6 [@media(max-height:500px)]:py-2">
         <HorizontalProjects projects={projects} />
       </div>
     </section>

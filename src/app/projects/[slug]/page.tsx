@@ -21,11 +21,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const project = getProject(slug);
 
-  if (!project) return { title: "Проект не найден" };
+  if (!project) return { title: "Project not found" };
 
   // У многих кейсов клиент и есть продукт: «M-Des — M-Des» в заголовке ни к чему.
+  // Регистр не учитываем: клиент записан как бренд («COURT 01»).
   const title =
-    project.client === project.title ? project.title : `${project.title} — ${project.client}`;
+    project.client.toLowerCase() === project.title.toLowerCase()
+      ? project.title
+      : `${project.title} — ${project.client}`;
 
   return pageMetadata({
     title,
@@ -37,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       width: 1200,
       height: 630,
       type: "image/jpeg",
-      alt: `Обложка проекта ${project.title}`,
+      alt: `${project.title} project cover`,
     },
   });
 }
@@ -53,6 +56,13 @@ export default async function ProjectPage({ params }: PageProps) {
   // Кейс держим коротким: описание сверху, под ним листаемые кадры.
   // Подробности живут в описании проекта, а не в простыне блоков.
   const intro = project.blocks.find((block) => block.type === "text");
+
+  const meta: [string, string][] = [
+    ["Client", project.client],
+    ["Year", project.year],
+    ["Role", project.role],
+    ["Type", project.tags.slice(0, 2).join(" · ")],
+  ];
 
   const frames: Frame[] = project.blocks.flatMap((block) => {
     if (block.type === "shots") return block.items;
@@ -74,8 +84,14 @@ export default async function ProjectPage({ params }: PageProps) {
     <>
       <JsonLd data={projectSchema(project)} />
 
-      <section className="container-x pb-10 pt-[calc(var(--header-h)+10vh)] text-center">
-        <h1>
+      <section className="container-x pb-10 pt-[calc(var(--header-h)+8vh)] text-center">
+        <Reveal immediate>
+          <TransitionLink href="/projects" className="mono-label link-mask tap-target opacity-70">
+            ← All work
+          </TransitionLink>
+        </Reveal>
+
+        <h1 className="mt-4">
           <Reveal as="span" className="display-caps block text-display" immediate>
             {project.title}
           </Reveal>
@@ -89,28 +105,38 @@ export default async function ProjectPage({ params }: PageProps) {
           </Reveal>
         </h1>
 
+        {/* Мета подписана: раньше клиент, год и роль шли одной строкой
+            без пояснений, и «COURT 01 2026» читалось как одно название. */}
         <Reveal
-          as="p"
-          className="mono-label mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 opacity-60"
+          as="dl"
+          className="mx-auto mt-9 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-5 text-left sm:flex sm:flex-wrap sm:justify-center sm:gap-x-12"
           immediate
           delay={0.16}
         >
-          <span>{project.client}</span>
-          <span>{project.year}</span>
-          <span>{project.role}</span>
+          {meta.map(([term, value]) => (
+            <div key={term}>
+              <dt className="mono-label text-[0.625rem] opacity-60">{term}</dt>
+              <dd className="mt-1.5">{value}</dd>
+            </div>
+          ))}
           {project.url ? (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="link-mask tap-target"
-            >
-              {new URL(project.url).host} ↗
-            </a>
+            <div>
+              <dt className="mono-label text-[0.625rem] opacity-60">Live</dt>
+              <dd className="mt-1.5">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="link-mask"
+                >
+                  {new URL(project.url).host} ↗
+                </a>
+              </dd>
+            </div>
           ) : null}
         </Reveal>
 
-        <Reveal as="p" className="poster-lead mt-8" immediate delay={0.24}>
+        <Reveal as="p" className="poster-lead mt-10" immediate delay={0.24}>
           {intro?.type === "text" ? intro.body : project.summary}
         </Reveal>
       </section>
@@ -123,7 +149,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <section className="container-x section text-center" aria-labelledby="next-project">
         <Reveal as="p" className="mono-label opacity-60">
-          Следующий проект
+          Next project
         </Reveal>
         <h2 id="next-project" className="mt-4">
           <TransitionLink

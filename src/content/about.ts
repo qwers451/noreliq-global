@@ -12,35 +12,35 @@ export type Stat = {
 export const about = {
   /** Крупный вводный текст на странице «О нас». */
   lead:
-    "Noreliq помогает бизнесу запускать сайты, сервисы, ботов и AI-инструменты. Быстро разбираемся в задаче, предлагаем понятный формат работы и доводим проект до результата.",
+    "Noreliq helps businesses launch websites, services, bots and AI tools. We get to the core of the task fast, propose a clear way of working and see the project through to the result.",
   body: [
-    "Мы собрались из продуктовых команд и агентств, поэтому одинаково спокойно относимся и к дедлайнам, и к деталям. В каждом проекте есть человек, который отвечает за результат целиком, а не за свой участок.",
-    "Работаем прозрачно: задачи, сроки и решения видны клиенту на всём протяжении проекта. Если гипотеза не подтверждается, говорим об этом сразу и предлагаем альтернативу.",
+    "We come from product teams and agencies, so we're equally calm about deadlines and details. Every project has one person responsible for the whole result, not just their own part.",
+    "We work in the open: tasks, timelines and decisions are visible to the client throughout the project. If a hypothesis doesn't hold up, we say so right away and suggest an alternative.",
   ],
   principles: [
     {
       index: "01",
-      title: "Сначала задача",
+      title: "The problem comes first",
       description:
-        "Перед дизайном и разработкой фиксируем, что должно измениться: заявки, продажи, скорость работы, качество контента или видимость бренда.",
+        "Before design and development, we agree on what should change: leads, sales, speed of work, content quality or brand visibility.",
     },
     {
       index: "02",
-      title: "Показываем ход работы",
+      title: "We show our work",
       description:
-        "Работаем поэтапно, показываем промежуточные версии и быстро согласуем решения.",
+        "We work in stages, share interim versions and agree on decisions quickly.",
     },
     {
       index: "03",
-      title: "Не усложняем без причины",
+      title: "No complexity for its own sake",
       description:
-        "Если задачу можно решить проще, не добавляем лишние сущности, экраны и технологии ради вида.",
+        "If a task can be solved more simply, we don't add extra entities, screens or technologies for show.",
     },
     {
       index: "04",
-      title: "Оставляем порядок после запуска",
+      title: "We leave things in order",
       description:
-        "Передаём проект так, чтобы его можно было поддерживать: структура, доступы, документация и понятная логика внутри.",
+        "We hand over projects so they can be maintained: clear structure, access, documentation and logic you can follow.",
     },
   ] satisfies Principle[],
   stack: [
@@ -74,9 +74,9 @@ export const about = {
     "Stripe",
   ],
   stats: [
-    { value: "6+", label: "лет практики" },
-    { value: "40+", label: "выпущенных проектов" },
-    { value: "3", label: "человека в ядре команды" },
-    { value: "12", label: "стран у клиентов" },
+    { value: "6+", label: "years of practice" },
+    { value: "40+", label: "projects shipped" },
+    { value: "3", label: "people in the core team" },
+    { value: "12", label: "client countries" },
   ] satisfies Stat[],
 } as const;

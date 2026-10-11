@@ -5,7 +5,7 @@ import { about } from "@/content/about";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
-  title: "О нас",
+  title: "About",
   description: about.lead,
   path: "/about",
 });
@@ -13,11 +13,11 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <Poster
-      label="01 / О нас"
-      caps="Студия для сайтов"
-      note="AI-контента и автоматизации"
+      label="01 / About"
+      caps="A studio for websites"
+      note="AI content and automation"
       lead={about.lead}
-      cta={{ href: "/contacts", label: "Обсудить проект" }}
+      cta={{ href: "/contacts", label: "Start a project" }}
     />
   );
 }

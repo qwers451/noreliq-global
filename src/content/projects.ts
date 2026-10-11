@@ -38,7 +38,10 @@ export type Project = {
   /** Публичный адрес проекта, если сайт открыт. */
   url?: string;
   tags: string[];
+  /** Знак-иконка проекта: превью для соцсетей и разметки. */
   cover: string;
+  /** Экран продукта 16:10 для ленты работ и главной (scripts/project-previews.mjs). */
+  preview: string;
   summary: string;
   blocks: ProjectBlock[];
 };
@@ -51,56 +54,57 @@ export const projects: Project[] = [
     title: "M-Des",
     client: "M-Des",
     year: "2026",
-    role: "Дизайн и разработка",
-    url: "https://m-des.ru",
-    subtitle: "студия дизайна интерьеров",
-    tags: ["Сайт", "Интерьеры", "Мультиязычность"],
+    role: "Design and development",
+    url: "https://m-des.ru/en/",
+    subtitle: "interior design studio",
+    tags: ["Website", "Interiors", "Multilingual"],
     cover: "/projects/m-des/cover.webp",
+    preview: "/projects/m-des/preview.webp",
     summary:
-      "Витрина студии авторского дизайна интерьеров: философия студии, портфолио концепций, состав услуг и цены — в русской и английской версиях.",
+      "A showcase for a bespoke interior design studio: its philosophy, a portfolio of concepts, services and pricing, in English and Russian.",
     blocks: [
       {
         type: "text",
-        title: "Задача",
+        title: "The brief",
         body:
-          "Студия Маргариты Давиденко работает с частными интерьерами, где решение принимают по ощущению от пространства, а не по списку услуг. Поэтому сайт собран как витрина почерка студии: визуализация на весь экран, короткие формулировки и один понятный следующий шаг — написать в мессенджер. Разделы услуг, портфолио и цен продолжают ту же подачу, а вся витрина открывается в русской и английской версиях.",
+          "Margarita Davidenko's studio designs private interiors, where clients decide on how a space feels rather than on a list of services. So the site works as a showcase of the studio's hand: full-screen renders, short copy and one clear next step, a message to the studio. The services, portfolio and pricing pages keep the same voice, and the whole site is available in English and Russian.",
       },
       {
         type: "shots",
         items: [
           {
             src: "/projects/m-des/home.webp",
-            alt: "Главная страница M-Des: визуализация интерьера на весь экран",
+            alt: "M-Des home page: a full-screen interior render",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/m-des/portfolio.webp",
-            alt: "Портфолио: десять концепций студии в общей сетке",
+            alt: "Portfolio: the studio's concepts in a single grid",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/m-des/uslugi.webp",
-            alt: "Услуги: из чего состоит дизайн-проект интерьера",
+            alt: "Services: what an interior design project includes",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/m-des/prices.webp",
-            alt: "Цены: стоимость проектирования от 10 000 ₽ за м²",
+            alt: "Pricing: design fees per square metre",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/m-des/contacts.webp",
-            alt: "Контакты: Telegram, Instagram и WhatsApp одним списком",
+            alt: "Contacts: Telegram, Instagram and WhatsApp in one list",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/m-des/mobile.webp",
-            alt: "Мобильная версия главной страницы",
+            alt: "Mobile version of the home page",
             width: 1170,
             height: 1992,
           },
@@ -113,58 +117,59 @@ export const projects: Project[] = [
     title: "Meet Up",
     client: "Meet Up",
     year: "2025",
-    role: "Дизайн и разработка",
-    subtitle: "карта друзей и ресторанов",
-    tags: ["Веб-приложение", "Бронирование", "Карты"],
+    role: "Design and development",
+    subtitle: "a map of friends and restaurants",
+    tags: ["Web app", "Booking", "Maps"],
     cover: "/projects/meet-up/cover.webp",
+    preview: "/projects/meet-up/preview.webp",
     summary:
-      "Meet Up помогает выбрать, где встретиться и поесть: показывает места рядом, рекомендации друзей, меню, маршрут, бронь столика и предзаказ.",
+      "Meet Up helps you decide where to meet and eat: places nearby, friends' recommendations, menus, directions, table booking and pre-ordering.",
     blocks: [
       {
         type: "text",
-        title: "Задача",
+        title: "The brief",
         body:
-          "Выбор ресторана обычно распадается на несколько этапов: найти место на карте, проверить отзывы, переслать варианты друзьям, позвонить для брони. Нужно было собрать этот путь в один мобильный веб-сценарий.",
+          "Choosing a restaurant usually splits into several steps: find a place on the map, check reviews, send options to friends, call to book. The task was to bring that whole path into a single mobile web flow.",
       },
       {
         type: "screens",
         items: [
-          { src: "/projects/meet-up/map.webp", caption: "Карта, подборки и фильтры" },
-          { src: "/projects/meet-up/search-dish.webp", caption: "Поиск по блюду, а не только по названию" },
-          { src: "/projects/meet-up/route.webp", caption: "Маршрут — в Яндекс Картах или 2ГИС" },
+          { src: "/projects/meet-up/map.webp", caption: "Map, curated lists and filters" },
+          { src: "/projects/meet-up/search-dish.webp", caption: "Search by dish, not just by name" },
+          { src: "/projects/meet-up/route.webp", caption: "Directions in Yandex Maps or 2GIS" },
         ],
       },
       {
         type: "text",
-        title: "Социальный слой",
+        title: "The social layer",
         body:
-          "Главная идея — рекомендации от знакомых. Пользователь видит на карте места, где были друзья, их оценки и комментарии. Это помогает быстрее выбрать ресторан без долгого чтения случайных отзывов.",
+          "The core idea is recommendations from people you know. The map shows places your friends have been, with their ratings and comments, so you can pick a restaurant without wading through reviews from strangers.",
       },
       {
         type: "text",
-        title: "Бронь и предзаказ",
+        title: "Booking and pre-ordering",
         body:
-          "После выбора места пользователь сразу переходит к действию: выбирает дату, время, количество гостей и столик. В меню можно заранее посмотреть состав, КБЖУ, аллергены и добавить блюда к предзаказу.",
+          "Once a place is chosen, the next step is right there: date, time, number of guests and a table. The menu shows ingredients, nutrition facts and allergens, and dishes can be added to a pre-order.",
       },
       {
         type: "screens",
         items: [
-          { src: "/projects/meet-up/menu.webp", caption: "Меню заведения" },
-          { src: "/projects/meet-up/dish.webp", caption: "Карточка блюда: КБЖУ и аллергены" },
-          { src: "/projects/meet-up/booking.webp", caption: "Подтверждение брони и выбор столика" },
+          { src: "/projects/meet-up/menu.webp", caption: "Restaurant menu" },
+          { src: "/projects/meet-up/dish.webp", caption: "Dish details: nutrition and allergens" },
+          { src: "/projects/meet-up/booking.webp", caption: "Booking confirmation and table choice" },
         ],
       },
       {
         type: "text",
-        title: "Разработка",
+        title: "Development",
         body:
-          "Проект прошёл путь от сценариев и макетов до рабочей мобильной веб-версии: карта, жесты, шторки и состояния без установки приложения.",
+          "The project went from user flows and mockups to a working mobile web app: map, gestures, bottom sheets and states, with nothing to install.",
       },
       {
         type: "stats",
         items: [
-          { value: "4", label: "раздела в навигации" },
-          { value: "2", label: "сценария: бронь и предзаказ" },
+          { value: "4", label: "sections in the navigation" },
+          { value: "2", label: "flows: booking and pre-order" },
         ],
       },
     ],
@@ -174,18 +179,19 @@ export const projects: Project[] = [
     title: "DevContest",
     client: "DevContest",
     year: "2026",
-    role: "Дизайн и разработка",
-    subtitle: "конкурсы с ИИ-оценкой",
-    tags: ["Платформа", "ИИ", "Микросервисы"],
+    role: "Design and development",
+    subtitle: "contests with AI review",
+    tags: ["Platform", "AI", "Microservices"],
     cover: "/projects/devcontest/cover.webp",
+    preview: "/projects/devcontest/preview.webp",
     summary:
-      "Платформа для конкурсного фриланса: заказчик запускает конкурс, участники присылают решения, AI помогает проверить работы по ТЗ, а призовой фонд хранится в эскроу до выбора победителя.",
+      "A platform for contest-based freelancing: a client launches a contest, participants submit solutions, AI helps check each one against the brief, and the prize fund stays in escrow until a winner is chosen.",
     blocks: [
       {
         type: "text",
-        title: "Задача",
+        title: "The brief",
         body:
-          "В классическом фрилансе заказчик часто выбирает исполнителя до того, как увидит результат. DevContest меняет эту механику: сначала участники предлагают решения, затем заказчик сравнивает их по понятным критериям и выбирает победителя.",
+          "In classic freelancing, clients often pick a contractor before they see any result. DevContest flips that: participants submit solutions first, then the client compares them against clear criteria and picks a winner.",
       },
       {
         type: "image",
@@ -193,14 +199,14 @@ export const projects: Project[] = [
         width: 2000,
         height: 1250,
         contain: true,
-        alt: "Список конкурсов с фильтрами по статусу, типу и призовому фонду",
+        alt: "Contest list with filters by status, type and prize fund",
         wide: true,
       },
       {
         type: "text",
-        title: "Как устроено",
+        title: "How it works",
         body:
-          "Заказчик создаёт конкурс с описанием, требованиями, этапами и призовым фондом. Участники загружают решения, а AI-проверка помогает быстро увидеть, насколько каждая работа соответствует ТЗ. Финальное решение остаётся за заказчиком.",
+          "The client creates a contest with a description, requirements, stages and a prize fund. Participants upload their solutions, and an AI review shows how well each one matches the brief. The final call stays with the client.",
       },
       {
         type: "image",
@@ -208,33 +214,33 @@ export const projects: Project[] = [
         width: 2000,
         height: 1250,
         contain: true,
-        alt: "Карточка решения с оценкой ИИ по каждому требованию техзадания",
+        alt: "Solution page with an AI score for every requirement in the brief",
         wide: true,
       },
       {
         type: "text",
-        title: "Деньги",
+        title: "Payments",
         body:
-          "Призовой фонд резервируется до старта конкурса. Исполнители видят гарант оплаты и выплаты уходят победителям после закрытия всех этапов.",
+          "The prize fund is reserved before the contest starts. Participants can see that payment is guaranteed, and payouts go to the winners once every stage is closed.",
       },
       {
         type: "text",
-        title: "Архитектура",
+        title: "Architecture",
         body:
-          "Проект собран как набор независимых сервисов: авторизация, конкурсы, AI-оценка и платежи. Такой подход упрощает развитие платформы: отдельные части можно дорабатывать, тестировать и масштабировать без переписывания всего продукта.",
+          "The product is built as a set of independent services: auth, contests, AI review and payments. Each part can be improved, tested and scaled on its own, without rewriting the whole product.",
       },
       {
         type: "shots",
         items: [
           {
             src: "/projects/devcontest/wallet.webp",
-            alt: "Кошелёк: баланс, пополнение и история транзакций",
+            alt: "Wallet: balance, top-ups and transaction history",
             width: 2000,
             height: 1250,
           },
           {
             src: "/projects/devcontest/create.webp",
-            alt: "Создание конкурса: этапы и распределение призового фонда",
+            alt: "Creating a contest: stages and prize split",
             width: 2000,
             height: 1250,
           },
@@ -243,43 +249,44 @@ export const projects: Project[] = [
       {
         type: "stats",
         items: [
-          { value: "4", label: "микросервиса за шлюзом" },
-          { value: "17", label: "экранов интерфейса" },
-          { value: "3", label: "роли: заказчик, исполнитель, админ" },
+          { value: "4", label: "microservices behind a gateway" },
+          { value: "17", label: "interface screens" },
+          { value: "3", label: "roles: client, participant, admin" },
         ],
       },
     ],
   },
   {
     slug: "court-01",
-    title: "Корт 01",
+    title: "Court 01",
     client: "COURT 01",
     year: "2026",
-    role: "Дизайн и разработка",
-    subtitle: "бронь стола за минуту",
-    tags: ["Веб-приложение", "Бронирование", "Личный кабинет"],
+    role: "Design and development",
+    subtitle: "book a table in a minute",
+    tags: ["Web app", "Booking", "Member area"],
     cover: "/projects/court-01/cover.webp",
+    preview: "/projects/court-01/preview.webp",
     summary:
-      "Сервис бронирования для клуба настольного тенниса: план зала со столами, живая сетка доступности, запись к тренеру и списание часов с клубного абонемента.",
+      "A booking service for a table tennis club: a floor plan with tables, a live availability grid, coach sessions and hours deducted from the club membership.",
     blocks: [
       {
         type: "text",
-        title: "Задача",
+        title: "The brief",
         body:
-          "Премиальный клуб принимал брони через администратора в мессенджере: занятость столов держали в голове, тренеров согласовывали отдельно, абонементы считали вручную. Нужен был сервис, в котором резидент сам видит свободное время и бронирует стол за минуту, а клуб перестаёт быть узким местом.",
+          "A premium club took bookings through an administrator in a messenger: table availability lived in someone's head, coaches were arranged separately and memberships were counted by hand. The club needed a service where members see free slots and book a table in a minute, so the front desk stops being a bottleneck.",
       },
       {
         type: "shots",
         items: [
           {
             src: "/projects/court-01/dashboard.webp",
-            alt: "Дашборд резидента: ближайшая бронь, баланс часов, доступность столов",
+            alt: "Member dashboard: next booking, hours balance, table availability",
             width: 2000,
             height: 2759,
           },
           {
             src: "/projects/court-01/booking.webp",
-            alt: "Бронирование стола по плану зала с опциями и расчётом стоимости",
+            alt: "Booking a table on the floor plan, with extras and a price breakdown",
             width: 2000,
             height: 2798,
           },
@@ -287,103 +294,39 @@ export const projects: Project[] = [
       },
       {
         type: "text",
-        title: "Бронь как главный сценарий",
+        title: "Booking comes first",
         body:
-          "Стол выбирают не из списка, а на схеме зала: видно зоны, покрытие, оборудование и то, какой стол занят. К броне сразу добавляются опции — комплект ракеток, робот-подающий, вода — и цена пересчитывается с учётом скидки резидента. На дашборде резидент видит ближайшую сессию, остаток часов и свободные столы на вечер.",
+          "Tables are picked on a floor plan rather than from a list: you can see zones, surfaces, equipment and which tables are taken. Extras such as a racket set, a robot feeder or water are added right in the booking, and the price updates with the member discount. The dashboard shows the next session, remaining hours and tables free tonight.",
       },
       {
         type: "shots",
         items: [
           {
             src: "/projects/court-01/schedule.webp",
-            alt: "Сетка доступности столов на день с клубными событиями",
+            alt: "Daily table availability grid with club events",
             width: 2000,
             height: 2192,
           },
           {
             src: "/projects/court-01/coaches.webp",
-            alt: "Каталог тренеров с фильтрами и конфигуратором тренировки",
+            alt: "Coach directory with filters and a session builder",
             width: 2000,
-            height: 2633,
+            height: 2634,
           },
         ],
       },
       {
         type: "text",
-        title: "Расписание и тренеры",
+        title: "Schedule and coaches",
         body:
-          "Администратор работает в таймлайне: шесть столов, интервалы от 30 минут, клубные турниры и сервисные окна на одном экране. Наставники собраны в каталог с фильтрами по формату, уровню и стилю игры — у каждого видно ближайшее окно и стоимость часа, а запись идёт тем же сценарием, что и бронь стола.",
+          "Staff work in a timeline: six tables, 30-minute slots, club tournaments and maintenance windows on one screen. Coaches live in a directory filtered by format, level and playing style, each showing their next free slot and hourly rate, and a session is booked the same way as a table.",
       },
       {
         type: "stats",
         items: [
-          { value: "6", label: "столов в живой сетке" },
-          { value: "30", label: "минут — минимальный слот" },
-          { value: "4", label: "ключевых экрана сервиса" },
-        ],
-      },
-    ],
-  },
-  {
-    slug: "marketplace-cards",
-    title: "Карточки для маркетплейсов",
-    // Демонстрационный набор: товары вымышленные, маркировка наша.
-    client: "Демонстрация услуги",
-    year: "2026",
-    role: "Дизайн и AI-визуализация",
-    subtitle: "AI-визуал вместо студии",
-    tags: ["ИИ", "Маркетплейсы", "Визуал"],
-    cover: "/projects/marketplace-cards/cover.webp",
-    summary:
-      "Инфографика для маркетплейсов: генерируем товарные сцены и собираем карточки.",
-    blocks: [
-      {
-        type: "text",
-        title: "Задача",
-        body:
-          "Продавцу нужны карточки под требования разных площадок, а съёмка и ретушь часто растягивают запуск на недели. Мы собираем визуал через AI-сцены: показываем товар в интерьере, в руках, в деталях и быстро адаптируем под новые цвета или комплектации.",
-      },
-      {
-        type: "text",
-        body:
-          "Ниже — демонстрационные наборы в трёх категориях: техника для дома, аудио и кухня. Товары и марка на них вымышленные, это образцы подачи, а не работа для конкретного заказчика.",
-      },
-      {
-        type: "shots",
-        items: [
-          {
-            src: "/projects/marketplace-cards/vacuum.webp",
-            alt: "Набор карточек для пылесоса: сценарии уборки и характеристики",
-            width: 1448,
-            height: 1086,
-          },
-          {
-            src: "/projects/marketplace-cards/earbuds.webp",
-            alt: "Карточки для наушников: звук, автономность, комплектация",
-            width: 1448,
-            height: 1086,
-          },
-        ],
-      },
-      {
-        type: "text",
-        title: "Как собираем",
-        body:
-          "Начинаем с разбора карточки конкурентов и списка возражений покупателя — он и задаёт порядок блоков. Дальше генерируем сцены под товар, собираем инфографику в единой сетке и адаптируем под требования площадок к размерам и полям. На выходе — набор из девяти карточек в общем визуальном языке бренда.",
-      },
-      {
-        type: "image",
-        src: "/projects/marketplace-cards/coffee.webp",
-        alt: "Карточки для кофемашины: характеристики, габариты, комплектация",
-        contain: true,
-        width: 1448,
-        height: 1086,
-      },
-      {
-        type: "stats",
-        items: [
-          { value: "9", label: "карточек в наборе" },
-          { value: "3", label: "площадки: WB, Ozon, Маркет" },
+          { value: "6", label: "tables in the live grid" },
+          { value: "30", label: "minutes, the shortest slot" },
+          { value: "4", label: "core screens" },
         ],
       },
     ],

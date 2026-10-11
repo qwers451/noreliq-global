@@ -9,9 +9,9 @@ import { pageMetadata } from "@/lib/metadata";
 import { servicesSchema } from "@/lib/schema";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Услуги",
+  title: "Services",
   description:
-    "Веб-платформы, карточки для маркетплейсов, AI-видео, боты и Mini Apps. Форматы работ и цены Noreliq.",
+    "Web platforms, AI video, Telegram bots and Mini Apps, AI assistants and visibility in AI search. How Noreliq works.",
   path: "/services",
 });
 
@@ -20,48 +20,46 @@ export default function ServicesPage() {
     <>
       <JsonLd data={servicesSchema(services)} />
 
-      <Poster label="02 / Услуги" caps="Что мы умеем" note="форматы работ и цены" />
+      <Poster label="02 / Services" caps="What we do" note="formats and packages" />
 
-      {/* Список направлений: плотный гротеск в заголовках и цены
-          моноширинным — без описаний на несколько абзацев. */}
+      {/* Список направлений строками: индекс, суть и пакеты в своих
+          колонках — так их сравнивают взглядом сверху вниз, а не читают
+          центрированную колонку. На телефоне колонки встают друг под друга.
+          Цен на международной версии нет: стоимость обсуждается в переписке. */}
       <section className="container-x -mt-[22svh] pb-[var(--section-y)]">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           {services.map((service, index) => (
             <Reveal
               key={service.id}
               as="article"
-              className="border-t border-line py-10 text-center"
+              className="grid gap-x-10 gap-y-4 border-t border-line py-8 md:grid-cols-[9rem_minmax(0,1fr)_minmax(0,18rem)] md:py-10"
               y={20}
               delay={index === 0 ? 0.3 : 0}
             >
-              <p className="mono-label opacity-60">
+              <p className="mono-label opacity-70 md:pt-2">
                 {service.index} / {service.code}
               </p>
 
-              <h2 className="display-caps mt-4 text-h2">{service.title}</h2>
+              <div>
+                <h2 className="display-caps text-h2">{service.title}</h2>
+                <p className="mt-3 max-w-[46ch] leading-relaxed opacity-80">{service.summary}</p>
+              </div>
 
-              <p className="poster-lead mt-4 opacity-80">{service.summary}</p>
-
-              <dl className="mx-auto mt-7 flex max-w-xl flex-col gap-2">
+              <ul className="flex flex-col gap-1.5 md:pt-1.5">
                 {service.tiers.map((tier) => (
-                  <div
-                    key={tier.title}
-                    className="flex flex-wrap items-baseline justify-center gap-x-3 sm:flex-nowrap"
-                  >
-                    <dt className="opacity-80 sm:shrink-0">{tier.title}</dt>
-                    {/* Линия-выноска только там, где строка помещается целиком. */}
-                    <span aria-hidden="true" className="hidden h-px flex-1 bg-line sm:block" />
-                    <dd className="font-code tabular-nums sm:shrink-0">{tier.price}</dd>
-                  </div>
+                  <li key={tier} className="font-code opacity-85">
+                    {tier}
+                  </li>
                 ))}
-              </dl>
+              </ul>
             </Reveal>
           ))}
 
-          <Reveal className="mt-14 flex flex-col items-center gap-6" y={20}>
+          <Reveal className="mt-14 flex flex-col items-center gap-6 text-center" y={20}>
             <span aria-hidden="true" className="hairline" />
+            <p className="poster-lead opacity-80">Pricing on request: tell us about the task and we&apos;ll send an estimate.</p>
             <TransitionLink href="/contacts" className="mono-label link-mask tap-target">
-              Обсудить задачу
+              Discuss your project
             </TransitionLink>
           </Reveal>
         </div>
